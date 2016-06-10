@@ -1,5 +1,0 @@
-[project]
-name = flop pages
-
-[servers.ghpages]
-target = ghpages+https://imflop/imflop.github.io
