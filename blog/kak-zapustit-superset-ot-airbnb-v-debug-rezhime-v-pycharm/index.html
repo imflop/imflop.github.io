@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blog — flop pages</title>
+    <title>Как запустить superset от airbnb в debug режиме в PyCharm — flop pages</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/tomorrow.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/bootstrap.overload.css">
+    <link rel="stylesheet" href="../../static/bootstrap.overload.css">
     <!-- Font -->
     <link href="http://fonts.googleapis.com/css?family=PT+Serif&amp;subset=cyrillic-ext,latin" rel="stylesheet">
     <!-- Images -->
@@ -31,13 +31,13 @@
       <h1>flop pages</h1>
       <nav>
         <ul class="nav navbar-nav">
-          <li><a href="../">Welcome</a></li>
+          <li><a href="../../">Welcome</a></li>
           
-            <li class="active"><a href="../blog/">Blog</a></li>
+            <li class="active"><a href="../../blog/">Blog</a></li>
           
-            <li><a href="../projects/">Projects</a></li>
+            <li><a href="../../projects/">Projects</a></li>
           
-            <li><a href="../about/">About</a></li>
+            <li><a href="../../about/">About</a></li>
           
         </ul>
       </nav>
@@ -60,11 +60,11 @@
           <ul class="nav navbar-nav">
             <li></li>
             
-              <li class="active"><a href="../blog/">Blog</a></li>
+              <li class="active"><a href="../../blog/">Blog</a></li>
             
-              <li><a href="../projects/">Projects</a></li>
+              <li><a href="../../projects/">Projects</a></li>
             
-              <li><a href="../about/">About</a></li>
+              <li><a href="../../about/">About</a></li>
             
             <!-- <li><a href="blog-list.html">Blog</a></li>
             <li><a href="projects.html">Projects</a></li>
@@ -84,110 +84,30 @@
             <article>
               
   
-    
-  <!-- <div class="blog-post"> -->
-  <div class="row">
-    <div class="col-sm-12 col-xs-12">
+  <h1>Как запустить superset от airbnb в debug режиме в PyCharm</h1>
+  <p><del>Хахахахах, а никак!</del>
+<a href="https://github.com/airbnb/superset/">Superset</a> это такая штуковина по визуализации и изучению данных от ребят из <a href="https://www.airbnb.com/about/about-us">airbnb</a>. Как пишут о ней сами авторы:</p>
+<blockquote><p>Superset is a data exploration platform designed to be visual, intuitive, and interactive</p>
+</blockquote>
+<p>Очень стандартный набор баззвордов, потому что спустя пару часов изучения её внутреннего устройства, она была visual, interactive, но никак не intuitive. Спереди у него находится react + redux и NVD3, сзади - flask и тесная интеграция его с <a href="http://druid.io">druid</a>. А вот что бы разобарться во внутренностях понадобится вменяемый дебагер. Сами авторы доку все еще не запилили, предлагают просто поставить его пипом и потыкать в подготовленные дашборды с разными слайсами.</p>
+<pre><code>$ pip install superset
+</code></pre>
+<p>Мне такой вариант не улыбался, чуть больше чем никак. Поэтому качаем исходник в виртуальное окружение и делаем так:</p>
+<pre><code>$ pip install --editable .
+</code></pre>
+<p>Дальше через flask-app-builder "инитим его как в (((доке)))", а в новом окне терминала отдельно запускаем фронт:</p>
+<pre><code>$ cd superset/assets &amp;&amp; npm install -i
+$ npm run dev
+</code></pre>
+<p>Теперь пускаем бэк в дебаг режиме:</p>
+<pre><code>$ python runserver -d
+</code></pre>
+<p>В stdout летит лог запросов, отлично, теперь это надо перенести в PyCharm. Для этого надо выкупить где лежит запускатор <strong>&rarr;</strong> (superset/bin/superset) и прописать его в конфигурацию как то вот так:</p>
+<figure>
+<img class="img-responsive" src="/static/img/2017-04-21_17-15-04.png" alt="конфигурация дебаггера">
+</figure>
+  <time class="time" title="Дата публикации" datetime="2017-04-19">April 19, 2017</time>
 
-      
-        <h2><a href="../blog/kak-zapustit-superset-ot-airbnb-v-debug-rezhime-v-pycharm/" class="no-underline">Как запустить superset от airbnb в debug режиме в PyCharm</a></h2>
-      
-      <span class="meta small text-muted">
-        19/04/2017
-      </span>
-      
-
-    </div>
-  </div>
-
-  
-    
-  <!-- <div class="blog-post"> -->
-  <div class="row">
-    <div class="col-sm-12 col-xs-12">
-
-      
-        <h2><a href="../blog/podborka-interesnykh-materialov-za-ferval-mart/" class="no-underline">Подборка интересных материалов за февраль / март</a></h2>
-      
-      <span class="meta small text-muted">
-        06/04/2017
-      </span>
-      
-
-    </div>
-  </div>
-
-  
-    
-  <!-- <div class="blog-post"> -->
-  <div class="row">
-    <div class="col-sm-12 col-xs-12">
-
-      
-        <h2><a href="../blog/podborka-interesnyh-materialov-za-ianvar/" class="no-underline">Подборка интересных материалов за январь</a></h2>
-      
-      <span class="meta small text-muted">
-        02/02/2017
-      </span>
-      
-
-    </div>
-  </div>
-
-  
-    
-  <!-- <div class="blog-post"> -->
-  <div class="row">
-    <div class="col-sm-12 col-xs-12">
-
-      
-        <h2><a href="../blog/podborka-interesnyh-materialov-za-dekabr/" class="no-underline">Подборка интересных материалов за декабрь</a></h2>
-      
-      <span class="meta small text-muted">
-        13/01/2017
-      </span>
-      
-
-    </div>
-  </div>
-
-  
-    
-  <!-- <div class="blog-post"> -->
-  <div class="row">
-    <div class="col-sm-12 col-xs-12">
-
-      
-        <h2><a href="../blog/podborka-interesnyh-materialov-za-noyabr/" class="no-underline">Подборка интересных материалов за ноябрь</a></h2>
-      
-      <span class="meta small text-muted">
-        05/12/2016
-      </span>
-      
-
-    </div>
-  </div>
-
-  
-    
-  <!-- <div class="blog-post"> -->
-  <div class="row">
-    <div class="col-sm-12 col-xs-12">
-
-      
-        <h2><a href="../blog/first-post/" class="no-underline">Hello brutal world</a></h2>
-      
-      <span class="meta small text-muted">
-        04/12/2016
-      </span>
-      
-
-    </div>
-  </div>
-
-  
-
-  
 
             </article>
           <hr></hr>
