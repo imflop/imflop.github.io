@@ -2,8 +2,8 @@
 <html class="h-100">
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="{{ '/static/style.css'|url }}">
-<title>{% block title %}Welcome{% endblock %} — imflop2</title>
+<link rel="stylesheet" href="static/style.css">
+<title>Welcome to imflop.github.io! — imflop2</title>
 <body class="d-flex flex-column h-100">
   <header>
     <nav class="navbar navbar-expand-sm fixed-top">
@@ -11,22 +11,12 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a {% if this._path == '/' %}class="nav-link active"{% else %}class="nav-link"{% endif %} href="{{ '/'|url }}">
+            <a class="nav-link active" href="./">
               §
             </a>
             <li class="nav-item"><a href="#" class="nav-link">...</a></li>
           </li>
-          {#
-          {% for href, title in [
-            ['/blog', 'Blog'],
-            ['/projects', 'Projects'],
-            ['/about', 'About']
-          ] %}
-            <li class="nav-item">
-              <a {% if this.is_child_of(href) %} class="nav-link active"{% else %} class="nav-link"{% endif %} href="{{ href|url }}">{{ title }}</a>
-            </li>
-          {% endfor %}
-          #}
+          
         </ul>
       </div>
 
@@ -36,7 +26,7 @@
   <main class="flex-shrink-0">
     <div class="container">
       <div class="page">
-        {% if this._path == '/' %}
+        
 
 
     <p class="lead text-center mt-13">Hello, I'm Oleg.</p>
@@ -44,9 +34,7 @@
     <p class="lead text-center">However, if you're interested in staying updated about things I do, please feel free to follow me using the links below ↓ or send <a href="mailto:imflop@gmail.com">email</a> directly.</p>
 
 
-        {% else %}
-          {% block body %}{% endblock %}
-        {% endif %}
+        
       </div>
     </div>
   </main>
